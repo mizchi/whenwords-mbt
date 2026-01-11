@@ -1,4 +1,4 @@
-# whenword-mbt
+# whenwords-mbt
 
 A relative time formatting library for MoonBit.
 
