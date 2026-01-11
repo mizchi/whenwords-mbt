@@ -15,32 +15,32 @@ This repository demonstrates that the whenwords specification can be successfull
 ## Installation
 
 ```bash
-moon add mizchi/whenword
+moon add mizchi/whenwords
 ```
 
 ## Usage
 
 ```moonbit
 // Relative time formatting
-@whenword.timeago(1705190400L, reference=1705276800L)  // "1 day ago"
-@whenword.timeago(1705280400L, reference=1705276800L)  // "in 1 hour"
+@whenwords.timeago(1705190400L, reference=1705276800L)  // "1 day ago"
+@whenwords.timeago(1705280400L, reference=1705276800L)  // "in 1 hour"
 
 // Duration formatting
-@whenword.duration(9000L)  // "2 hours, 30 minutes"
-@whenword.duration(9000L, options={ compact: true, max_units: 2 })  // "2h 30m"
+@whenwords.duration(9000L)  // "2 hours, 30 minutes"
+@whenwords.duration(9000L, options={ compact: true, max_units: 2 })  // "2h 30m"
 
 // Duration parsing
-@whenword.parse_duration("2h 30m")  // 9000
-@whenword.parse_duration("2:30:00")  // 9000
-@whenword.parse_duration("2.5 hours")  // 9000
+@whenwords.parse_duration("2h 30m")  // 9000
+@whenwords.parse_duration("2:30:00")  // 9000
+@whenwords.parse_duration("2.5 hours")  // 9000
 
 // Human-readable dates
-@whenword.human_date(1705190400L, reference=1705276800L)  // "Yesterday"
-@whenword.human_date(1705363200L, reference=1705276800L)  // "Tomorrow"
-@whenword.human_date(1704844800L, reference=1705276800L)  // "Last Wednesday"
+@whenwords.human_date(1705190400L, reference=1705276800L)  // "Yesterday"
+@whenwords.human_date(1705363200L, reference=1705276800L)  // "Tomorrow"
+@whenwords.human_date(1704844800L, reference=1705276800L)  // "Last Wednesday"
 
 // Date ranges
-@whenword.date_range(1705276800L, 1705449600L)  // "January 15-17, 2024"
+@whenwords.date_range(1705276800L, 1705449600L)  // "January 15-17, 2024"
 ```
 
 ## API
