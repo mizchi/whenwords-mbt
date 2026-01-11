@@ -15,7 +15,7 @@ This repository demonstrates that the whenwords specification can be successfull
 ## Installation
 
 ```bash
-moon add mizchi/whenword-mbt
+moon add mizchi/whenword
 ```
 
 ## Usage
