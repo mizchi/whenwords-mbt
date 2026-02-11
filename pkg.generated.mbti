@@ -1,0 +1,30 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "mizchi/whenwords"
+
+// Values
+pub fn date_range(Int64, Int64) -> String
+
+pub fn duration(Int64, options? : DurationOptions) -> String
+
+pub fn human_date(Int64, reference~ : Int64) -> String
+
+pub fn parse_duration(String) -> Int64 raise ParseDurationError
+
+pub fn timeago(Int64, reference~ : Int64) -> String
+
+// Errors
+pub suberror ParseDurationError {
+  ParseDurationError(String)
+}
+
+// Types and methods
+pub(all) struct DurationOptions {
+  compact : Bool
+  max_units : Int
+}
+pub fn DurationOptions::default() -> Self
+
+// Type aliases
+
+// Traits
+
