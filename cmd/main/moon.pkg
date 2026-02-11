@@ -1,0 +1,7 @@
+import {
+  "mizchi/whenwords" @lib,
+}
+
+options(
+  "is-main": true,
+)

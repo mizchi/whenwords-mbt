@@ -5,12 +5,16 @@
 // Time constants in seconds
 let seconds_per_minute : Int64 = 60
 
+///|
 let seconds_per_hour : Int64 = 3600
 
+///|
 let seconds_per_day : Int64 = 86400
 
+///|
 let seconds_per_month : Int64 = 2592000 // 30 days
 
+///|
 let seconds_per_year : Int64 = 31536000 // 365 days
 
 ///|
@@ -133,7 +137,7 @@ pub fn DurationOptions::default() -> DurationOptions {
 /// Returns: Human-readable duration string
 pub fn duration(
   seconds : Int64,
-  options~ : DurationOptions = DurationOptions::default()
+  options? : DurationOptions = DurationOptions::default(),
 ) -> String {
   if seconds == 0L {
     return if options.compact { "0s" } else { "0 seconds" }
@@ -234,7 +238,10 @@ pub fn parse_duration(input : String) -> Int64 raise ParseDurationError {
 
 ///|
 fn parse_colon_duration(s : String) -> Int64 raise ParseDurationError {
-  let parts : Array[String] = s.split(":").map(fn(sv) { sv.to_string() }).collect()
+  let parts : Array[String] = s
+    .split(":")
+    .map(fn(sv) { sv.to_string() })
+    .collect()
   match parts.length() {
     2 => {
       let hours = parse_int64_safe(parts[0])
@@ -254,9 +261,7 @@ fn parse_colon_duration(s : String) -> Int64 raise ParseDurationError {
 ///|
 fn parse_int64_safe(s : String) -> Int64 raise ParseDurationError {
   let trimmed = s.trim()
-  try {
-    @strconv.parse_int64(trimmed)
-  } catch {
+  @strconv.parse_int64(trimmed) catch {
     _ => raise ParseDurationError("Invalid number: " + trimmed.to_string())
   }
 }
@@ -264,9 +269,7 @@ fn parse_int64_safe(s : String) -> Int64 raise ParseDurationError {
 ///|
 fn parse_float64_safe(s : String) -> Double raise ParseDurationError {
   let trimmed = s.trim()
-  try {
-    @strconv.parse_double(trimmed)
-  } catch {
+  @strconv.parse_double(trimmed) catch {
     _ => raise ParseDurationError("Invalid number: " + trimmed.to_string())
   }
 }
@@ -274,10 +277,10 @@ fn parse_float64_safe(s : String) -> Double raise ParseDurationError {
 ///|
 fn parse_unit_duration(s : String) -> Int64 raise ParseDurationError {
   // Remove "and", ",", extra spaces
-  let normalized = s.to_lower().replace_all(old=",", new=" ").replace_all(
-    old=" and ",
-    new=" ",
-  )
+  let normalized = s
+    .to_lower()
+    .replace_all(old=",", new=" ")
+    .replace_all(old=" and ", new=" ")
   let mut total_seconds = 0.0
   let mut current_num = ""
   let mut i = 0
@@ -300,8 +303,8 @@ fn parse_unit_duration(s : String) -> Int64 raise ParseDurationError {
       // Find the unit
       let unit_start = i
       while i < chars.length() &&
-        chars[i] != ' ' &&
-        not(chars[i] >= '0' && chars[i] <= '9') {
+            chars[i] != ' ' &&
+            not(chars[i] >= '0' && chars[i] <= '9') {
         i = i + 1
       }
       if unit_start < i {
